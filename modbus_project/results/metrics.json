@@ -1,0 +1,54 @@
+{
+  "normal": {
+    "captured_frames": 4,
+    "level_mean_pct": 49.8,
+    "level_min_pct": 44.6,
+    "level_max_pct": 55.1
+  },
+  "interception": {
+    "units_answered": 3,
+    "holding_regs_found": 4,
+    "coils_found": 4,
+    "server_id": "TULSA-RTU-1",
+    "sniffed_frames": 3
+  },
+  "injection": {
+    "t_attack_s": 7.0,
+    "overflow_t_s": 12.127931356430054,
+    "latency_to_overflow_s": 5.13,
+    "normal_max_pct": 55.1,
+    "attacked_max_pct": 100.0
+  },
+  "replay": {
+    "t_attack_s": 6.0,
+    "seen_after_mean_pct": 49.4,
+    "true_max_pct": 100.0,
+    "awareness_gap_pct": 50.6
+  },
+  "dos": {
+    "pool_size": 8,
+    "first_lockout_conns": 8,
+    "rejected_connections": 7
+  },
+  "diagnostics": {
+    "restart_outage_s": 2.79,
+    "counters_before": {
+      "bus_messages": 85,
+      "bus_errors": 0,
+      "exceptions": 0,
+      "slave_messages": 82
+    },
+    "counters_after": {
+      "bus_messages": 0,
+      "bus_errors": 0,
+      "exceptions": 0,
+      "slave_messages": 0
+    }
+  },
+  "broadcast": {
+    "got_response": false,
+    "coil_before": true,
+    "coil_after": false,
+    "frame": "12 34 00 00 00 06 00 05 00 00 00 00"
+  }
+}

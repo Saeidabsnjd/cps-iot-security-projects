@@ -1,0 +1,197 @@
+{
+  "fingerprint": [
+    {
+      "id": "0x11",
+      "ecu": "A",
+      "injected_ppm": 13.4,
+      "recovered_ppm": 13.45
+    },
+    {
+      "id": "0x13",
+      "ecu": "A",
+      "injected_ppm": 13.4,
+      "recovered_ppm": 13.35
+    },
+    {
+      "id": "0x55",
+      "ecu": "B",
+      "injected_ppm": 27.2,
+      "recovered_ppm": 27.14
+    },
+    {
+      "id": "0x1B0",
+      "ecu": "A",
+      "injected_ppm": 78.4,
+      "recovered_ppm": 79.83
+    },
+    {
+      "id": "0x1D0",
+      "ecu": "A",
+      "injected_ppm": 78.4,
+      "recovered_ppm": 81.91
+    },
+    {
+      "id": "0x294",
+      "ecu": "B",
+      "injected_ppm": 199.8,
+      "recovered_ppm": 207.22
+    },
+    {
+      "id": "0x295",
+      "ecu": "B",
+      "injected_ppm": 199.8,
+      "recovered_ppm": 197.35
+    },
+    {
+      "id": "0x1A6",
+      "ecu": "C",
+      "injected_ppm": 265.7,
+      "recovered_ppm": 269.85
+    },
+    {
+      "id": "0x309",
+      "ecu": "D",
+      "injected_ppm": 95.8,
+      "recovered_ppm": 97.46
+    }
+  ],
+  "attacks": {
+    "fabrication": {
+      "t_attack": 400.0,
+      "detected_at": 400.45543999999995,
+      "latency_s": 0.46
+    },
+    "suspension": {
+      "t_attack": 400.0,
+      "detected_at": 400.20541999999995,
+      "latency_s": 0.21
+    },
+    "masquerade": {
+      "t_attack": 400.0,
+      "detected_at": 400.96216999999996,
+      "mean_interval_before_ms": 50.001,
+      "mean_interval_after_ms": 50.001,
+      "latency_s": 0.96
+    }
+  },
+  "pairwise": {
+    "corr_same_ecu": 0.966,
+    "corr_diff_ecu": 0.226,
+    "worstcase_corr_before": 0.968,
+    "worstcase_corr_after": -0.034,
+    "worstcase_pairwise_detected_at": 600.42793
+  },
+  "root_cause": {
+    "known_skews": {
+      "A": 13.49,
+      "B": 27.17
+    },
+    "post_attack_skew_ppm": 13.37,
+    "identified_ecu": "A",
+    "abs_diff_ppm": 0.11
+  },
+  "roc": {
+    "kappas": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10
+    ],
+    "curves": {
+      "fabrication": {
+        "pfa": [
+          0.624,
+          0.276,
+          0.144,
+          0.064,
+          0.02,
+          0.008,
+          0.004,
+          0.0
+        ],
+        "pd": [
+          0.456,
+          0.736,
+          0.856,
+          0.94,
+          0.964,
+          0.988,
+          0.996,
+          1.0
+        ]
+      },
+      "suspension": {
+        "pfa": [
+          0.624,
+          0.276,
+          0.144,
+          0.064,
+          0.02,
+          0.008,
+          0.004,
+          0.0
+        ],
+        "pd": [
+          0.456,
+          0.736,
+          0.856,
+          0.94,
+          0.964,
+          0.988,
+          0.996,
+          1.0
+        ]
+      },
+      "mistimed_masq": {
+        "pfa": [
+          0.624,
+          0.276,
+          0.144,
+          0.064,
+          0.02,
+          0.008,
+          0.004,
+          0.0
+        ],
+        "pd": [
+          0.456,
+          0.748,
+          0.856,
+          0.936,
+          0.968,
+          0.988,
+          0.996,
+          1.0
+        ]
+      },
+      "timed_masq": {
+        "pfa": [
+          0.624,
+          0.276,
+          0.144,
+          0.064,
+          0.02,
+          0.008,
+          0.004,
+          0.0
+        ],
+        "pd": [
+          0.456,
+          0.748,
+          0.856,
+          0.936,
+          0.968,
+          0.988,
+          0.996,
+          1.0
+        ]
+      }
+    },
+    "n_trials": 250,
+    "timed_masq_pfa_at_100pd_pct": 0.0
+  }
+}

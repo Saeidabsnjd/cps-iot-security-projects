@@ -1,0 +1,50 @@
+==========================================================================
+MODBUS ATTACK TAXONOMY REPRODUCTION - Huitsing, Chandia, Papa & Shenoi (2008)
+Self-contained Modbus TCP master/slave + attack toolkit (pure Python)
+==========================================================================
+
+=== Experiment 1: Normal Modbus communication (baseline) ===
+  saved fig1_normal.png  (captured 4 frames; level held in 45-55% band)
+
+=== Experiment 2: Interception (B6 scan, S5 report-id, B9 passive sniff) ===
+  B6 scan: device answered on 3 unit-id(s); discovered 4 holding regs + coils with NO authentication
+  S5 Report Server ID returned: 'TULSA-RTU-1'
+  B9 passive sniff recovered 3 cleartext response frames (register/coil values readable in the clear)
+  saved fig2_interception.png
+
+=== Experiment 3: B4 Direct Slave Control (unauthorized command injection) ===
+  attacker forced OUTLET_VALVE=closed + PUMP_RUN=on with no authentication
+  tank overflowed (>=90%) at t=12.1s vs never under normal control
+
+=== Experiment 4: B2 Baseline Response Replay (man-in-the-middle) ===
+  after replay began, master kept seeing ~49% while true level reached 100%
+  maximum awareness gap (true - seen) = 50.6 percentage points
+
+=== Experiment 5: T10 TCP Pool Exhaustion (denial of service) ===
+  attacker connections= 0  active_on_slave= 1  legit master OK (16 ms)
+  attacker connections= 1  active_on_slave= 2  legit master OK (17 ms)
+  attacker connections= 2  active_on_slave= 2  legit master OK (3 ms)
+  attacker connections= 3  active_on_slave= 4  legit master OK (3 ms)
+  attacker connections= 4  active_on_slave= 5  legit master OK (1 ms)
+  attacker connections= 5  active_on_slave= 6  legit master OK (16 ms)
+  attacker connections= 6  active_on_slave= 7  legit master OK (2 ms)
+  attacker connections= 7  active_on_slave= 8  legit master OK (16 ms)
+  attacker connections= 8  active_on_slave= 8  legit master REFUSED (2 ms)
+  attacker connections= 9  active_on_slave= 8  legit master REFUSED (16 ms)
+  attacker connections=10  active_on_slave= 8  legit master REFUSED (3 ms)
+  attacker connections=11  active_on_slave= 8  legit master REFUSED (15 ms)
+  pool size=8; first lock-out at 8 attacker connections; slave rejected 7 connection attempts
+
+=== Experiment 6: S4 Remote Restart + S1 Diagnostic Register Reset ===
+  [attacker] sent FC08/sub01 Remote Restart at t=3.5s
+  S4 caused ~2.8s of lost communications after the restart
+  S1 cleared diagnostic counters: bus_messages 85 -> 0
+
+=== Experiment 7: B1 Broadcast Message Spoofing (fabrication) ===
+  sent broadcast (unit id 0) write PUMP_RUN=OFF: 12 34 00 00 00 06 00 05 00 00 00 00
+  slave responded to broadcast? False  (no response = stealthy, as the paper notes)
+  PUMP_RUN coil: True -> False  (command took effect silently)
+
+=== Building taxonomy coverage + summary figures ===
+  saved fig7_taxonomy.png
+  saved fig8_summary.png

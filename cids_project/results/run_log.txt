@@ -1,0 +1,50 @@
+======================================================================
+CIDS REPRODUCTION - Cho & Shin, USENIX Security 2016
+Self-contained simulation; parameters: N=20, lambda=0.9995, Gamma_L=5
+======================================================================
+
+=== Experiment 1: Clock skew as a fingerprint (Fig. 5) ===
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig1_fingerprint.png
+    0x11 ECU A: injected   13.4 ppm -> recovered   13.45 ppm
+    0x13 ECU A: injected   13.4 ppm -> recovered   13.35 ppm
+    0x55 ECU B: injected   27.2 ppm -> recovered   27.14 ppm
+   0x1B0 ECU A: injected   78.4 ppm -> recovered   79.83 ppm
+   0x1D0 ECU A: injected   78.4 ppm -> recovered   81.91 ppm
+   0x294 ECU B: injected  199.8 ppm -> recovered  207.22 ppm
+   0x295 ECU B: injected  199.8 ppm -> recovered  197.35 ppm
+   0x1A6 ECU C: injected  265.7 ppm -> recovered  269.85 ppm
+   0x309 ECU D: injected   95.8 ppm -> recovered   97.46 ppm
+
+=== Experiment 2: Fabrication & suspension attacks (Fig. 6/7) ===
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig2_fabrication.png
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig3_suspension.png
+  fabrication detected at 400.45543999999995s, suspension detected at 400.20541999999995s
+
+=== Experiment 3: Masquerade attack (Fig. 8) ===
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig4_masquerade.png
+  mean interval before=50.001ms  after=50.001ms (frequency-based IDS would see no change)
+  masquerade detected at t=400.96216999999996s
+
+=== Experiment 4: Message-pairwise detection (Fig. 9/10) ===
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig5_pairwise_corr.png
+  correlation same-ECU (0x1B0,0x1D0) = 0.966
+  correlation diff-ECU (0x1B0,0x1A6) = 0.226
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig6_pairwise_worstcase.png
+  worst-case masquerade: per-message blind, pairwise detected at t=600.42793s (corr dropped 0.97 -> -0.03)
+
+=== Experiment 6: Root-cause analysis ===
+  known skews: ECU A=13.5ppm, ECU B=27.2ppm
+  post-attack skew of 0x55 = 13.4ppm  ->  attacker ECU = A (|diff|=0.1ppm, ambiguous=False)
+
+=== Experiment 5: ROC / false-alarm rate (Fig. 11), 250 trials/kind ===
+  kappa=   2: P_FA=62.400%  fabrication: 45.6%  suspension: 45.6%  mistimed_masq: 45.6%  timed_masq: 45.6%
+  kappa=   3: P_FA=27.600%  fabrication: 73.6%  suspension: 73.6%  mistimed_masq: 74.8%  timed_masq: 74.8%
+  kappa=   4: P_FA=14.400%  fabrication: 85.6%  suspension: 85.6%  mistimed_masq: 85.6%  timed_masq: 85.6%
+  kappa=   5: P_FA= 6.400%  fabrication: 94.0%  suspension: 94.0%  mistimed_masq: 93.6%  timed_masq: 93.6%
+  kappa=   6: P_FA= 2.000%  fabrication: 96.4%  suspension: 96.4%  mistimed_masq: 96.8%  timed_masq: 96.8%
+  kappa=   7: P_FA= 0.800%  fabrication: 98.8%  suspension: 98.8%  mistimed_masq: 98.8%  timed_masq: 98.8%
+  kappa=   8: P_FA= 0.400%  fabrication: 99.6%  suspension: 99.6%  mistimed_masq: 99.6%  timed_masq: 99.6%
+  kappa=  10: P_FA= 0.000%  fabrication:100.0%  suspension:100.0%  mistimed_masq:100.0%  timed_masq:100.0%
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig7_roc.png
+
+  saved C:\Users\Saeed\Desktop\CPS\cids_project\results\fig8_summary.png
